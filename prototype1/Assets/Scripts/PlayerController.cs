@@ -22,24 +22,24 @@ public class PlayerController : MonoBehaviour {
         rigi.velocity = movement * speed;
 
         if(moveHoriz == 0 && moveVert == 0) {
-            playerAnim.SetInteger("State", 0);
+            playerAnim.SetInteger("playerDir", 0);
         }
         if (moveHoriz > 0 && moveVert == 0) {
-            playerAnim.SetInteger("State", 2);
+            playerAnim.SetInteger("playerDir", 2);
         } else if (moveHoriz < 0 && moveVert == 0) {
-            playerAnim.SetInteger("State", 4);
+            playerAnim.SetInteger("playerDir", 4);
         } else if (moveHoriz == 0 && moveVert > 0) {
-            playerAnim.SetInteger("State", 1);
+            playerAnim.SetInteger("playerDir", 1);
         } else if (moveHoriz == 0 && moveVert < 0) {
-            playerAnim.SetInteger("State", 3);
+            playerAnim.SetInteger("playerDir", 3);
         } 
         // @TODO: make diagonal movements
         else if ((moveHoriz > 0 || moveHoriz < 0) && moveVert > 0) {
-            playerAnim.SetInteger("State", 1);
+            playerAnim.SetInteger("playerDir", 1);
         } else if ((moveHoriz > 0 || moveHoriz < 0) && moveVert < 0) {
-            playerAnim.SetInteger("State", 3);
+            playerAnim.SetInteger("playerDir", 3);
         } else {
-            playerAnim.SetInteger("State", 0);
+            playerAnim.SetInteger("playerDir", 0);
         }
     }
 }
