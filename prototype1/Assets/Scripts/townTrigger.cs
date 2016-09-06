@@ -13,8 +13,8 @@ public class townTrigger : MonoBehaviour {
         float fadeTime = GameObject.Find("GameController").GetComponent<fadeScene>().BeginFade(1);  // find fadeScene script in GameController; 1 is in BeginFade(1) cuz 1 is fade out and -1 is fade in
         if (other.gameObject.tag == "Player") {
             playerRigi = other.gameObject.GetComponent<Rigidbody2D>();
-            playerRigi.isKinematic = true;
-            playerRigi.velocity = Vector2.zero;
+            playerRigi.isKinematic = true;                                                          // ignores colliders
+            playerRigi.velocity = Vector2.zero;                                                     // stops player
 
             other.gameObject.GetComponent<PlayerController>().speed = 0;
         }
