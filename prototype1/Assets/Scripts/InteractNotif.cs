@@ -25,7 +25,7 @@ public class InteractNotif : MonoBehaviour {
 
     public void bubbleHandler() {
         // when player enters interact radius
-        if (InterRadiusScript.playerInteract == true) {     // only name of script needed for static variable
+        if (NPC.npcInteract == true) {     // only name of script needed for static variable
             faded = true;
         } else {
             faded = false;
