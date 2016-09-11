@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InterRadiusScript : MonoBehaviour {
 
-    public bool playerInteract = false;
+    public static bool playerInteract = false;      // static variable able to be accessed w/o extending class (getcomponent)
 
     void Awake() {
         transform.localScale = new Vector3(3f, 3f, 0);  // set scale so all radii are consistant 
@@ -14,6 +14,8 @@ public class InterRadiusScript : MonoBehaviour {
        if (col.name == "player") {
             playerInteract = true;
        }
+
+        //Debug.Log(playerInteract);
     }
 
     void OnTriggerExit2D(Collider2D col) {

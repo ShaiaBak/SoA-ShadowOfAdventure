@@ -42,18 +42,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Raycasting() {
-        Debug.DrawLine(lineStart.position, lineEnd.position, Color.green);
+        Debug.DrawLine(lineStart.position, lineEnd.position, Color.green);      // draw the linecast so its visible for debugging
 
-        if(Physics2D.Linecast(lineStart.position, lineEnd.position, 1 << LayerMask.NameToLayer("NPC"))) {
-            hitInstance = Physics2D.Linecast(lineStart.position, lineEnd.position, 1 << LayerMask.NameToLayer("NPC"));  // get specific NPC (or instance) that you hit
+        if(Physics2D.Linecast(lineStart.position, lineEnd.position, 1 << LayerMask.NameToLayer("InteractTrigger"))) {
+            hitInstance = Physics2D.Linecast(lineStart.position, lineEnd.position, 1 << LayerMask.NameToLayer("InteractTrigger"));  // get specific NPC (or instance) that you hit
             interact = true;
         } else {
             interact = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && interact == true) {
-            Debug.Log("wuddup");
-        }
+        // if(Input.GetKeyDown(KeyCode.Space) && interact == true) {
+            // Debug.Log("wuddup");
+        // }
     }
 
     void movement() {

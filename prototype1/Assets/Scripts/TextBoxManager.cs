@@ -8,11 +8,21 @@ public class TextBoxManager : MonoBehaviour {
     public Text theText;
 
     public PlayerController player;
+    public GameObject[] radii;
+    //public GameObject radius;
+    public InterRadiusScript interRadiusScript;
 
     public bool textBoxActive;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        radii = GameObject.FindGameObjectsWithTag("InteractRadius");
+        
+        foreach(GameObject radius in radii) {
+            interRadiusScript = radius.GetComponent<InterRadiusScript>();
+        }
+
+
         if (textBoxActive) {
             enableTextBox();
         } else {
@@ -22,14 +32,28 @@ public class TextBoxManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyUp(KeyCode.Space)) {
+        Debug.Log(InterRadiusScript.playerInteract);
+        if(Input.GetKeyUp(KeyCode.Space) && player.interact == true) {
             if (!textBoxActive) {
                 enableTextBox();
             } else {
                 disableTextBox();
             }
+        } else if (Input.GetKeyUp(KeyCode.Space) && player.interact == false) {
+            if(textBoxActive) {
+                disableTextBox();
+            }
+        }
+
+        if(InterRadiusScript.playerInteract == false) {
+
+            disableTextBox();
         }
 	}
+
+    static void checkRadius() {
+
+    }
 
     public void enableTextBox() {
         textBox.SetActive(true);
