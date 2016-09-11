@@ -19,7 +19,7 @@ public class TextBoxManager : MonoBehaviour {
         radii = GameObject.FindGameObjectsWithTag("InteractRadius");
         
         foreach(GameObject radius in radii) {
-            interRadiusScript = radius.GetComponent<InterRadiusScript>();
+            interRadiusScript = radius.GetComponent<InterRadiusScript>();   // not needed for static vars
         }
 
 
@@ -32,7 +32,7 @@ public class TextBoxManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(InterRadiusScript.playerInteract);
+        // Debug.Log(InterRadiusScript.playerInteract);
         if(Input.GetKeyUp(KeyCode.Space) && player.interact == true) {
             if (!textBoxActive) {
                 enableTextBox();
