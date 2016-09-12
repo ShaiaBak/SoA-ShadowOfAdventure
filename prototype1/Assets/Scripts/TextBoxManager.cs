@@ -9,7 +9,6 @@ public class TextBoxManager : MonoBehaviour {
 
     public PlayerController player;
     public GameObject[] radii;
-    //public GameObject radius;
     public InterRadiusScript interRadiusScript;
 
     public bool textBoxActive;
