@@ -7,8 +7,9 @@ public class InteractNotif : MonoBehaviour {
     public float maximum = 1f;
     public float fadeSpeed = 5.0f;
     public float threshold = float.Epsilon;
-
     public bool faded = false;
+
+    public static bool speechInteract = false;
 
     public GameObject speechBubble;
     public SpriteRenderer sprite;

@@ -3,27 +3,28 @@ using System.Collections;
 
 public class NPCController : MonoBehaviour {
     public bool npc_isTalking = false;
-    public TextBoxManager textBoxManager;
-    public GameObject[] npcs;
+    public StaticTextBoxManager textBoxManager;
+    public GameObject npc;
     public InterRadiusScript interRadiusScript;
+    public PlayerController playerController;
 
     Animator npcAnim;
     GameObject gameController;
-    
-
-    //Animator playerAnim;
-    //playerAnim.SetInteger("playerDir", 0);
-    // playerAnim = GetComponent<Animator>();
+    GameObject player;
 
     void Awake() {
         npcAnim = GetComponent<Animator>();
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        npcs = GameObject.FindGameObjectsWithTag("NPC");
-        foreach(GameObject npc in npcs) {
-            interRadiusScript = npc.GetComponent<InterRadiusScript>();
-        }
 
-        textBoxManager = gameController.GetComponent<TextBoxManager>();
+        // npc radius
+        interRadiusScript = GetComponentInChildren<InterRadiusScript>();
+
+        // game controller
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        textBoxManager = gameController.GetComponent<StaticTextBoxManager>();
+
+        // player controller
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
     }
 
     void Update() {
@@ -31,7 +32,7 @@ public class NPCController : MonoBehaviour {
     }
 
     void checkTalking() {
-        if (textBoxManager.textBoxActive == true && interRadiusScript.npcInteract == true) {
+        if (textBoxManager.textBoxActive == true && interRadiusScript.npcInteract == true && playerController.interact == true) {
             npc_isTalking = true;
         } else {
             npc_isTalking = false;

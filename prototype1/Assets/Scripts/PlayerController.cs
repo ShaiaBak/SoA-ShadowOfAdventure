@@ -8,12 +8,13 @@ public class PlayerController : MonoBehaviour {
     public Transform lineStart;
     public Transform lineEnd;
     public string playerDirection;
+    public bool canMove;
 
     private Rigidbody2D rigi;
 
     Animator playerAnim;
     RaycastHit2D hitInstance;
-    Vector2 currentDir = Vector2.zero;
+    // Vector2 currentDir = Vector2.zero;
 
     // Use this for initialization
     void Start () {
@@ -57,6 +58,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     void movement() {
+        // if can move is false, exit out of function
+        if(!canMove) {
+            playerAnim.SetInteger("playerDir", 0);      // set idle animation
+            return;
+        }
+
         float moveHoriz = Input.GetAxis("Horizontal");
         float moveVert = Input.GetAxis("Vertical");
 
