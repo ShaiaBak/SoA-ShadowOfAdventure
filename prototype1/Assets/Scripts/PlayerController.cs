@@ -51,10 +51,6 @@ public class PlayerController : MonoBehaviour {
         } else {
             interact = false;
         }
-
-        // if(Input.GetKeyDown(KeyCode.Space) && interact == true) {
-            // Debug.Log("wuddup");
-        // }
     }
 
     void movement() {

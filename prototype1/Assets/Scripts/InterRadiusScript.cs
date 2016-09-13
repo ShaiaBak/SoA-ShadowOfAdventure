@@ -17,7 +17,7 @@ public class InterRadiusScript : MonoBehaviour {
             npcInteract = true;
        }
 
-        Debug.Log(playerInteract);
+        //Debug.Log(playerInteract);
     }
 
     void OnTriggerExit2D(Collider2D col) {
