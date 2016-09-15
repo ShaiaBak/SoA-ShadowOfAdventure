@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
         rigi.freezeRotation = true;                 // Freeze the rotation
         playerAnim = GetComponent<Animator>();
         playerDirection = "UP";
+        canMove = true;
     }
 
     void FixedUpdate() {

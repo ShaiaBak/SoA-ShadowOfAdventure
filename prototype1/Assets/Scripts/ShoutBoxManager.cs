@@ -70,7 +70,6 @@ public class ShoutBoxManager : MonoBehaviour {
         elapsedTime = 0;
         while (elapsedTime < shoutWaitTime){
             yield return null;
-            Debug.Log(elapsedTime);
             elapsedTime += Time.deltaTime;
         }
         shoutWait = false;
