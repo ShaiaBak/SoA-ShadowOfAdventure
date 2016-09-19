@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
+    public static float speed;
     public bool interact = false;
     public Transform lineStart;
     public Transform lineEnd;
@@ -11,18 +11,26 @@ public class PlayerController : MonoBehaviour {
     public bool canMove;
 
     private Rigidbody2D rigi;
+    private static bool playerExists;       // all objects that has this script, share the static information
 
     Animator playerAnim;
     RaycastHit2D hitInstance;
-    // Vector2 currentDir = Vector2.zero;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
+        if (!playerExists) {     // if player exist on the scene do stuff
+            playerExists = true;
+            DontDestroyOnLoad(transform.gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+
         rigi = GetComponent<Rigidbody2D>();
         rigi.freezeRotation = true;                 // Freeze the rotation
         playerAnim = GetComponent<Animator>();
         playerDirection = "UP";
         canMove = true;
+        speed = 3;
     }
 
     void FixedUpdate() {
@@ -61,8 +69,8 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        float moveHoriz = Input.GetAxis("Horizontal");
-        float moveVert = Input.GetAxis("Vertical");
+        float moveHoriz = Input.GetAxisRaw("Horizontal");
+        float moveVert = Input.GetAxisRaw("Vertical");
 
         Vector2 movement = new Vector2(moveHoriz, moveVert);
         rigi.velocity = movement * speed;

@@ -6,7 +6,8 @@ public class StaticTextBoxManager : MonoBehaviour {
 
     public GameObject textBox;
     public Text theText;
-    public PlayerController player;
+    public GameObject player;
+    public PlayerController playerController;
     public GameObject[] radii;
     public InterRadiusScript interRadiusScript;
 
@@ -14,6 +15,9 @@ public class StaticTextBoxManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+
         radii = GameObject.FindGameObjectsWithTag("InteractRadius");
         foreach(GameObject radius in radii) {
             interRadiusScript = radius.GetComponent<InterRadiusScript>();       // not needed for static vars
@@ -31,15 +35,17 @@ public class StaticTextBoxManager : MonoBehaviour {
         checkTalkRadius();
     }
 
+    // @TODO: BUG: if player crosses from one radius to another, and the player lives in both radii at the same times during the crossing, text box doesnt work.
+
     void checkTalkRadius() {
         // Debug.Log(InterRadiusScript.playerInteract);
-        if (Input.GetKeyUp(KeyCode.Space) && player.interact == true) {
+        if (Input.GetKeyUp(KeyCode.Space) && playerController.interact == true) {
             if (!textBoxActive) {
                 enableTextBox();
             } else {
                 disableTextBox();
             }
-        } else if (Input.GetKeyUp(KeyCode.Space) && player.interact == false) {
+        } else if (Input.GetKeyUp(KeyCode.Space) && playerController.interact == false) {
             if (textBoxActive) {
                 disableTextBox();
             }
@@ -52,13 +58,13 @@ public class StaticTextBoxManager : MonoBehaviour {
 
     public void enableTextBox() {
         textBox.SetActive(true);
-        player.canMove = false;
+        playerController.canMove = false;
         textBoxActive = true;
     }
 
     public void disableTextBox() {
         textBox.SetActive(false);
-        player.canMove = true;
+        playerController.canMove = true;
         textBoxActive = false;
     }
 }

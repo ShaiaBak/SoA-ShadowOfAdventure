@@ -13,7 +13,10 @@ public class NPCController : MonoBehaviour {
     GameObject player;
 
     void Awake() {
+        playerController = FindObjectOfType<PlayerController>();
         npcAnim = GetComponent<Animator>();
+
+        npc = transform.gameObject;
 
         // npc radius
         interRadiusScript = GetComponentInChildren<InterRadiusScript>();
@@ -24,11 +27,14 @@ public class NPCController : MonoBehaviour {
 
         // player controller
         player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
     }
 
     void Update() {
         checkTalking();
+
+        if(playerController == null) {
+            playerController = FindObjectOfType<PlayerController>();
+        }
     }
 
     void checkTalking() {

@@ -16,7 +16,7 @@ public class ShoutBoxManager : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-
+        player = FindObjectOfType<PlayerController>();
         staticTextBoxManager = GetComponent<StaticTextBoxManager>();
 
         if (shoutBoxActive) {

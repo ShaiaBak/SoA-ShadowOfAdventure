@@ -12,7 +12,7 @@ public class InterRadiusScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col) {
         // Debug.Log(col.collider.name);
-       if (col.name == "player") {
+       if (col.name == "player") {      // @TODO: change method of finding ho is colliding
             playerInteract = true;
             npcInteract = true;
        }

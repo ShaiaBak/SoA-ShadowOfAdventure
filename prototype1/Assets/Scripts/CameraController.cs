@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class SmoothCamFollow : MonoBehaviour {
+public class CameraController : MonoBehaviour {
 
     public float interpVelocity;
     public float minDistance;
@@ -13,6 +13,7 @@ public class SmoothCamFollow : MonoBehaviour {
     // Use this for initialization
     void Start() {
         targetPos = transform.position;
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
