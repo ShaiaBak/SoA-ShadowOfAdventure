@@ -13,10 +13,10 @@ public class InteractNotif : MonoBehaviour {
 
     public GameObject speechBubble;
     public SpriteRenderer sprite;
-    InterRadiusScript NPC;
+    OuterRadiusScript NPC;
 
     void Awake() {
-        NPC = transform.parent.GetComponent<InterRadiusScript>();   // get parent script...  not needed for static variable. only name script
+        NPC = transform.parent.GetComponent<OuterRadiusScript>();   // get parent script...  not needed for static variable. only name script
     }
 
     void Update() {
@@ -26,7 +26,7 @@ public class InteractNotif : MonoBehaviour {
 
     public void bubbleHandler() {
         // when player enters interact radius
-        if (NPC.npcInteract == true) {     // only name of script needed for static variable
+        if (NPC.outerNpcInteract == true) {     // only name of script needed for static variable
             faded = true;
         } else {
             faded = false;

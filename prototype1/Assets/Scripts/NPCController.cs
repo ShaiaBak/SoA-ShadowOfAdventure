@@ -5,7 +5,7 @@ public class NPCController : MonoBehaviour {
     public bool npc_isTalking = false;
     public StaticTextBoxManager textBoxManager;
     public GameObject npc;
-    public InterRadiusScript interRadiusScript;
+    public OuterRadiusScript outerRadiusScript;
     public PlayerController playerController;
 
     Animator npcAnim;
@@ -19,7 +19,7 @@ public class NPCController : MonoBehaviour {
         npc = transform.gameObject;
 
         // npc radius
-        interRadiusScript = GetComponentInChildren<InterRadiusScript>();
+        outerRadiusScript = GetComponentInChildren<OuterRadiusScript>();
 
         // game controller
         gameController = GameObject.FindGameObjectWithTag("GameController");
@@ -38,7 +38,7 @@ public class NPCController : MonoBehaviour {
     }
 
     void checkTalking() {
-        if (textBoxManager.textBoxActive == true && interRadiusScript.npcInteract == true && playerController.interact == true) {
+        if (textBoxManager.textBoxActive == true && outerRadiusScript.outerNpcInteract == true && playerController.interact == true) {
             npc_isTalking = true;
         } else {
             npc_isTalking = false;

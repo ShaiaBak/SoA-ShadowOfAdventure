@@ -8,6 +8,7 @@ public class ShoutBoxManager : MonoBehaviour {
     public Text theText;
     public PlayerController player;
     public StaticTextBoxManager staticTextBoxManager;
+    public OuterRadiusScript outerRadiusScript;
 
     public bool shoutBoxActive;
     public bool shoutWait;
@@ -18,6 +19,7 @@ public class ShoutBoxManager : MonoBehaviour {
     void Start() {
         player = FindObjectOfType<PlayerController>();
         staticTextBoxManager = GetComponent<StaticTextBoxManager>();
+        //outerRadiusScript = FindObjectOfType<OuterRadiusScript>();
 
         if (shoutBoxActive) {
             enableShoutBox();
@@ -32,7 +34,7 @@ public class ShoutBoxManager : MonoBehaviour {
     }
 
     void checkShoutRadius() {
-        if(staticTextBoxManager.textBoxActive == true) {        // is the static text box is there, close all shout boxes
+        if (staticTextBoxManager.textBoxActive == true) {        // is the static text box is there, close all shout boxes
             shoutWait = true;
             disableShoutBox();
             StopCoroutine("disableShoutBoxEnum");
@@ -40,17 +42,17 @@ public class ShoutBoxManager : MonoBehaviour {
             return;
         }
 
-        if(shoutWait == true && staticTextBoxManager.textBoxActive == false) {
+        if (shoutWait == true && staticTextBoxManager.textBoxActive == false) {
             StartCoroutine("disableShoutBoxEnum");
         }
         // if player is in range, and its not waiting, start shouting
-        if (InterRadiusScript.playerInteract == true && shoutWait == false) {
-                enableShoutBox();
-        } else if (InterRadiusScript.playerInteract == false) {
-                disableShoutBox();
+        if (OuterRadiusScript.outerPlayerInteract == true && shoutWait == false) {
+            enableShoutBox();
+        } else if (OuterRadiusScript.outerPlayerInteract == false) {
+            disableShoutBox();
         }
 
-        if (InterRadiusScript.playerInteract == false) {
+        if (OuterRadiusScript.outerPlayerInteract == false) {
             disableShoutBox();
         }
     }
@@ -68,7 +70,7 @@ public class ShoutBoxManager : MonoBehaviour {
     // doesnt allow shout box to appear right after static text box is closed. 
     IEnumerator disableShoutBoxEnum() {
         elapsedTime = 0;
-        while (elapsedTime < shoutWaitTime){
+        while (elapsedTime < shoutWaitTime) {
             yield return null;
             elapsedTime += Time.deltaTime;
         }

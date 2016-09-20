@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InterRadiusScript : MonoBehaviour {
+public class OuterRadiusScript : MonoBehaviour {
 
-    public static bool playerInteract = false;      // static variable able to be accessed w/o extending class (getcomponent)
-    public bool npcInteract = false;
+    public static bool outerPlayerInteract = false;      // static variable able to be accessed w/o extending class (getcomponent)
+    public bool outerNpcInteract = false;
 
     void Awake() {
         transform.localScale = new Vector3(3f, 3f, 0);  // set scale so all radii are consistant 
@@ -13,15 +13,15 @@ public class InterRadiusScript : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         // Debug.Log(col.collider.name);
        if (col.name == "player") {      // @TODO: change method of finding ho is colliding
-            playerInteract = true;
-            npcInteract = true;
+            outerPlayerInteract = true;
+            outerNpcInteract = true;
        }
 
-        //Debug.Log(playerInteract);
+        //Debug.Log(outerPlayerInteract);
     }
 
     void OnTriggerExit2D(Collider2D col) {
-        playerInteract = false;
-        npcInteract = false;
+        outerPlayerInteract = false;
+        outerNpcInteract = false;
     }
 }

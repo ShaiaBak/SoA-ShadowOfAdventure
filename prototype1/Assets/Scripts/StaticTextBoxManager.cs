@@ -9,7 +9,7 @@ public class StaticTextBoxManager : MonoBehaviour {
     public GameObject player;
     public PlayerController playerController;
     public GameObject[] radii;
-    public InterRadiusScript interRadiusScript;
+    public MidRadiusScript midRadiusScript;
 
     public bool textBoxActive;
 
@@ -20,7 +20,7 @@ public class StaticTextBoxManager : MonoBehaviour {
 
         radii = GameObject.FindGameObjectsWithTag("InteractRadius");
         foreach(GameObject radius in radii) {
-            interRadiusScript = radius.GetComponent<InterRadiusScript>();       // not needed for static vars
+            midRadiusScript = radius.GetComponent<MidRadiusScript>();       // not needed for static vars
         }
 
         if (textBoxActive) {
@@ -40,18 +40,22 @@ public class StaticTextBoxManager : MonoBehaviour {
     void checkTalkRadius() {
         // Debug.Log(InterRadiusScript.playerInteract);
         if (Input.GetKeyUp(KeyCode.Space) && playerController.interact == true) {
+            // Debug.Log("can talk");
             if (!textBoxActive) {
                 enableTextBox();
             } else {
+                // Debug.Log("cant talk");
                 disableTextBox();
             }
         } else if (Input.GetKeyUp(KeyCode.Space) && playerController.interact == false) {
             if (textBoxActive) {
+                // Debug.Log("kill talk");
                 disableTextBox();
             }
         }
 
-        if (InterRadiusScript.playerInteract == false) {
+        if (MidRadiusScript.midPlayerInteract == false) {
+            // Debug.Log("will never talk");
             disableTextBox();
         }
     }
