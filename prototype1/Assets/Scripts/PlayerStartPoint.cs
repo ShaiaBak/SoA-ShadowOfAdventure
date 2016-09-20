@@ -3,17 +3,25 @@ using System.Collections;
 
 public class PlayerStartPoint : MonoBehaviour {
 
-    private PlayerController playerController;
+    public PlayerController playerController;
     private CameraController cameraController;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Start () {
         playerController = FindObjectOfType<PlayerController>();
 
-        if(playerController == null) {
-            return;
+        if (playerController == null) {
+            // nothing
+        } else {
+            startPointFunc();
         }
+    }
 
+    public void startPointFunc() {
+        
+        if (playerController == null) {
+            playerController = FindObjectOfType<PlayerController>();
+        }
         playerController.transform.position = transform.position;
 
         cameraController = FindObjectOfType<CameraController>();

@@ -32,4 +32,12 @@ public class CameraController : MonoBehaviour {
 
         }
     }
+
+    void Update() {
+        if (target == null) {
+            // if player is not created before run, check for player until it is created
+            target = GameObject.FindGameObjectWithTag("Player");
+            Debug.Log("running");
+        }
+    }
 }
