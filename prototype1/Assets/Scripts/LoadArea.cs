@@ -6,10 +6,12 @@ public class LoadArea : MonoBehaviour {
 
     public Rigidbody2D playerRigi;
     public string AreaToLoad;
-    public bool locked = false;
+    public bool unlocked = false;
+
+    public string id;
 
     IEnumerator OnTriggerEnter2D(Collider2D other) {
-        if(locked == true) {
+        if(unlocked == false) {
             Debug.Log("Locked!!");
             yield return null;
         } else {
