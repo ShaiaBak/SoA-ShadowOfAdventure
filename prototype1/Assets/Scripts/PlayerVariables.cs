@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 
-public static class PlayerVariables {
+public class PlayerVariables : MonoBehaviour {
 
     public static bool door_proto1a = false;
 
