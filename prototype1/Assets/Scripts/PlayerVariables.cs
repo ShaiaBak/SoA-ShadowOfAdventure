@@ -4,13 +4,19 @@ using System.Linq;
 
 public class PlayerVariables : MonoBehaviour {
 
-    public static bool door_proto1a = false;
+    public static bool door0 = false;
+    public static bool door1 = false;
+    public static bool door2 = false;
+    public static bool door3 = false;
 
-    public static GameObject FindDoorWithID(string id) {
-        return FindDoorsWithID(id)[0];
+    void Awake() {
+
+        GameObject door = DoorManager.FindDoorWithID(1);
+        checkLock();
     }
 
-    public static GameObject[] FindDoorsWithID(string id) {
-        return GameObject.FindObjectsOfType<LoadArea>().Where(x => x.id == id).Select(x => x.gameObject).ToArray();
+    void checkLock() {
+
     }
+    
 }
